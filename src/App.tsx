@@ -1,4 +1,5 @@
 import { useCallback, useRef, useState } from 'react'
+import { GoogleAd } from './components/GoogleAd'
 import { mergePagesInOrder, pagesFromFile, type PageItem } from './lib/pdfPages'
 import './App.css'
 
@@ -396,6 +397,8 @@ export default function App() {
           </button>
         </div>
       </main>
+
+      <GoogleAd />
 
       <footer className="footer">
         <p>Processing runs entirely on your device.</p>

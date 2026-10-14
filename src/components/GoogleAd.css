@@ -1,0 +1,13 @@
+.ad-slot {
+  width: 100%;
+  min-height: 90px;
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.ad-slot:empty {
+  display: none;
+}

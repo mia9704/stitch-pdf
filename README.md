@@ -16,10 +16,22 @@ Merge PDF files in the browser. Reorder whole documents or individual pages, the
 
 ```bash
 npm install
+cp .env.example .env   # optional: Google AdSense
 npm run dev
 ```
 
 Open the URL Vite prints (usually [http://localhost:5173](http://localhost:5173)).
+
+### Google AdSense (optional)
+
+Ads load only when both variables are set in `.env` (see `.env.example`):
+
+| Variable | Description |
+| -------- | ----------- |
+| `VITE_ADSENSE_CLIENT_ID` | Publisher ID (`ca-pub-…`) |
+| `VITE_ADSENSE_SLOT` | Numeric ad unit slot from AdSense |
+
+Restart the dev server after changing `.env`. The ad unit sits below the main controls (away from merge/download buttons). Unfilled or blank slots on `localhost` are normal until the site is approved and served on your production domain.
 
 ### Other scripts
 
