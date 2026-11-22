@@ -5,16 +5,8 @@ export function getAdsenseClientId(): string | undefined {
   return id || undefined
 }
 
-export function getAdsenseSlot(): string | undefined {
-  const slot = import.meta.env.VITE_ADSENSE_SLOT?.trim()
-  return slot || undefined
-}
-
-export function isAdsenseConfigured(): boolean {
-  return Boolean(getAdsenseClientId() && getAdsenseSlot())
-}
-
-export function loadAdsenseScript(clientId: string): void {
+/** Loads the AdSense script for site-level Auto ads (configured in AdSense → Ads → By site). */
+export function loadAdsenseAutoAds(clientId: string): void {
   if (typeof document === 'undefined') return
   if (document.querySelector(`script[${SCRIPT_ATTR}]`)) return
 

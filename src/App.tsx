@@ -1,5 +1,4 @@
 import { useCallback, useRef, useState } from 'react'
-import { GoogleAd } from './components/GoogleAd'
 import { mergePagesInOrder, pagesFromFile, type PageItem } from './lib/pdfPages'
 import './App.css'
 
@@ -17,7 +16,9 @@ function formatBytes(bytes: number): string {
 }
 
 function downloadBlob(data: Uint8Array, filename: string) {
-  const blob = new Blob([data], { type: 'application/pdf' })
+  const buffer = new ArrayBuffer(data.byteLength)
+  new Uint8Array(buffer).set(data)
+  const blob = new Blob([buffer], { type: 'application/pdf' })
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
   a.href = url
@@ -397,8 +398,6 @@ export default function App() {
           </button>
         </div>
       </main>
-
-      <GoogleAd />
 
       <footer className="footer">
         <p>Processing runs entirely on your device.</p>

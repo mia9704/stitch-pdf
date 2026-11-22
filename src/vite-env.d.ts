@@ -2,7 +2,6 @@
 
 interface ImportMetaEnv {
   readonly VITE_ADSENSE_CLIENT_ID?: string
-  readonly VITE_ADSENSE_SLOT?: string
 }
 
 interface ImportMeta {

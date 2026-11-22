@@ -22,16 +22,17 @@ npm run dev
 
 Open the URL Vite prints (usually [http://localhost:5173](http://localhost:5173)).
 
-### Google AdSense (optional)
+### Google AdSense Auto ads (optional)
 
-Ads load only when both variables are set in `.env` (see `.env.example`):
+Set your publisher ID in `.env` (see `.env.example`):
 
 | Variable | Description |
 | -------- | ----------- |
 | `VITE_ADSENSE_CLIENT_ID` | Publisher ID (`ca-pub-…`) |
-| `VITE_ADSENSE_SLOT` | Numeric ad unit slot from AdSense |
 
-Restart the dev server after changing `.env`. The ad unit sits below the main controls (away from merge/download buttons). Unfilled or blank slots on `localhost` are normal until the site is approved and served on your production domain.
+In AdSense, open **Ads → By site**, select your domain, and turn on **Auto ads** (choose which formats you want). The app only loads Google’s script; placement is controlled in AdSense, not in React.
+
+Restart the dev server after changing `.env`. Ads usually do not show on `localhost` until your site is approved on the live domain.
 
 ### Other scripts
 
