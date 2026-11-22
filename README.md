@@ -28,11 +28,22 @@ Set your publisher ID in `.env` (see `.env.example`):
 
 | Variable | Description |
 | -------- | ----------- |
-| `VITE_ADSENSE_CLIENT_ID` | Publisher ID (`ca-pub-…`) |
+| `VITE_ADSENSE_CLIENT_ID` | Publisher ID (`ca-pub-…` or `pub-…`; normalized at build time) |
 
-In AdSense, open **Ads → By site**, select your domain, and turn on **Auto ads** (choose which formats you want). The app only loads Google’s script; placement is controlled in AdSense, not in React.
+In AdSense, open **Ads → By site**, select your domain, and turn on **Auto ads** (choose which formats you want). The build injects the AdSense script and meta tag into `index.html`, and writes `ads.txt` to `dist/` so Google’s crawler can verify without running your React bundle.
 
 Restart the dev server after changing `.env`. Ads usually do not show on `localhost` until your site is approved on the live domain.
+
+#### If AdSense says it couldn’t verify your site
+
+1. **Deploy a production build** — verification does not work on `localhost`. Run `npm run build` and host everything in `dist/`.
+2. **Set env on the host** — `VITE_ADSENSE_CLIENT_ID` must be present **when you build** (Vercel/Netlify project env vars), not only in your laptop `.env`. Rebuild after setting it.
+3. **Confirm the domain** — the URL in AdSense must match exactly (including `www` vs apex, and `https`).
+4. **Check live HTML** — View Source on your homepage. You should see `google-adsense-account` meta and the `adsbygoogle.js?client=ca-pub-…` script in `<head>`.
+5. **Check `https://yourdomain.com/ads.txt`** — it should list your `pub-…` line (generated at build time when the client ID env var is set).
+6. In AdSense, try **Verify site** again after deploy, or use the **meta tag** / **ads.txt** verification option if offered.
+
+`public/robots.txt` allows crawlers; do not block Google at the CDN or host level.
 
 ### Other scripts
 
